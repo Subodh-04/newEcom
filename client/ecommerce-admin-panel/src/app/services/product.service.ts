@@ -5,7 +5,11 @@ import { Product } from '../models/product.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
-  private baseUrl = 'http://localhost:5000/products';
+
+  //for the hosted one
+  private baseUrl='https://newecom-1.onrender.com';
+  //for the local
+  //private baseUrl = 'http://localhost:5000/products';
 
   constructor(private http: HttpClient) {}
 

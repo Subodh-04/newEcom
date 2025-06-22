@@ -7,7 +7,7 @@ import { Product } from '../models/product.model';
 export class ProductService {
 
   //for the hosted one
-  private baseUrl='https://newecom-1.onrender.com';
+  private baseUrl='https://newecom-1.onrender.com/products';
   //for the local
   //private baseUrl = 'http://localhost:5000/products';
 

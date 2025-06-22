@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://newecom-1.onrender.com'],
+  origin: 'https://newecom-1.onrender.com',
   credentials: true,
 }));
 app.use(express.json());

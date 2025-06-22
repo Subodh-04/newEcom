@@ -1,0 +1,62 @@
+<div
+  class="d-flex justify-content-center align-items-center min-vh-100 bg-light"
+>
+  <div class="container my-5">
+    <div *ngIf="product" class="row g-5 justify-content-center">
+      <div class="col-md-6">
+        <div
+          class="position-relative rounded overflow-hidden border bg-white d-flex align-items-center justify-content-center"
+          style="height: 350px"
+        >
+          <img
+            *ngFor="let img of product.images; let i = index"
+            [src]="img"
+            [alt]="'Product Image ' + (i + 1)"
+            class="position-absolute top-0 start-0 w-100 h-100"
+            [ngClass]="{
+              'd-block': i === currentImageIndex,
+              'd-none': i !== currentImageIndex
+            }"
+            style="
+              object-fit: contain;
+              padding: 10px;
+              transition: opacity 0.5s ease-in-out;
+            "
+          />
+        </div>
+
+        <div class="d-flex justify-content-center flex-wrap gap-2 mt-3">
+          <img
+            *ngFor="let img of product.images; let i = index"
+            [src]="img"
+            alt="Thumbnail"
+            (click)="changeImage(i)"
+            [ngClass]="{ 'border-primary': i === currentImageIndex }"
+            class="img-thumbnail"
+            style="
+              width: 70px;
+              height: 70px;
+              object-fit: cover;
+              cursor: pointer;
+            "
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h1 class="fw-bold">{{ product.name }}</h1>
+        <p class="text-muted"><strong>SKU:</strong> {{ product.sku }}</p>
+        <h3 class="text-success">&#8377; {{ product.price }}</h3>
+
+        <div class="mt-4 d-flex gap-3">
+          <button class="btn btn-primary" (click)="editProduct(product.id)">
+            Edit
+          </button>
+          <button class="btn btn-danger" (click)="deleteProduct(product.id)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

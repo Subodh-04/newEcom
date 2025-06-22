@@ -1,0 +1,89 @@
+<div class="form-wrapper d-flex justify-content-center align-items-center">
+  <div class="form-container p-4 rounded shadow">
+    <h2 class="mb-4 text-center">
+      {{ editMode ? "Edit Product" : "Add Product" }}
+    </h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="mb-3">
+        <label for="sku" class="form-label">SKU</label>
+        <input
+          type="text"
+          id="sku"
+          formControlName="sku"
+          class="form-control"
+          [class.is-invalid]="validationErrors['sku']"
+        />
+        <div *ngIf="validationErrors['sku']" class="invalid-feedback">
+          {{ validationErrors["sku"] }}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="form-control"
+          [class.is-invalid]="validationErrors['name']"
+        />
+        <div *ngIf="validationErrors['name']" class="invalid-feedback">
+          {{ validationErrors["name"] }}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input
+          type="number"
+          id="price"
+          formControlName="price"
+          class="form-control"
+          [class.is-invalid]="validationErrors['price']"
+        />
+        <div *ngIf="validationErrors['price']" class="invalid-feedback">
+          {{ validationErrors["price"] }}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="images" class="form-label">Images</label>
+        <input
+          type="file"
+          id="images"
+          multiple
+          (change)="onFileChange($event)"
+          class="form-control"
+        />
+      </div>
+
+      <div *ngIf="editMode && existingImages.length" class="mb-3">
+        <label class="form-label">Existing Images</label>
+        <div class="d-flex flex-wrap gap-2">
+          <div
+            *ngFor="let img of existingImages"
+            class="position-relative border rounded p-1"
+            style="width: 100px; height: 100px"
+          >
+            <img
+              [src]="img"
+              alt="image"
+              class="img-fluid w-100 h-100 object-fit-cover"
+            />
+            <button
+              type="button"
+              (click)="removeExistingImage(img)"
+              class="btn-close position-absolute top-0 end-0"
+              style="background-color: rgba(255, 255, 255, 0.8)"
+            ></button>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">
+        {{ editMode ? "Update" : "Create" }} Product
+      </button>
+    </form>
+  </div>
+</div>
